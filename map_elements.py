@@ -1,4 +1,4 @@
-## Some tricks to help mapke pretty maps in python!
+## Some tricks to help make pretty maps in Python!
 
 def Graticule(Resolution = 1, Spacing = 30):
     import numpy as np
