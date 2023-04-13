@@ -1,10 +1,16 @@
 ## Some tricks to help make pretty maps in Python!
 
+import numpy as np
+import geopandas as gpd
+from shapely.geometry import LineString
+from mpl_toolkits.axes_grid1.anchored_artists import AnchoredSizeBar
+from matplotlib.patches import BoxStyle
+from matplotlib.path import Path
+import matplotlib.text as mtext
+
+
+
 def Graticule(Resolution = 1, Spacing = 30):
-    import numpy as np
-    import pandas as pd
-    import geopandas as gpd
-    from shapely.geometry import LineString
     
     lon_grid = np.arange(-180, 181, Spacing)
     lat_grid = np.arange(-90, 91, Resolution)
@@ -39,7 +45,6 @@ def Graticule(Resolution = 1, Spacing = 30):
     return(Grat)
 
 def scalebar(ax,distance=100,label='100 m',scale=5e-2,pos='lower left',Frame=True):
-    from mpl_toolkits.axes_grid1.anchored_artists import AnchoredSizeBar
     ax.add_artist(AnchoredSizeBar(ax.transData,
                            distance, label, pos, 
                            pad=0.3,
@@ -48,8 +53,6 @@ def scalebar(ax,distance=100,label='100 m',scale=5e-2,pos='lower left',Frame=Tru
                           ))
 
 class arrow_Box:
-    from matplotlib.patches import BoxStyle
-    from matplotlib.path import Path
 
     """A simple box."""
 
@@ -109,7 +112,7 @@ def North_Arrow(ax,fontsize=12,x=0.05,y=0.1):
 
 class LegendTitle(object):
     
-    import matplotlib.text as mtext
+    
     def __init__(self, text_props=None):
         self.text_props = text_props or {}
         super(LegendTitle, self).__init__()
