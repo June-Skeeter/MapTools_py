@@ -58,7 +58,7 @@ class arrow_Box:
         The arguments must be floats and have default values.
 
         Parameters
-        ----------
+        ---------- 
         pad : float
             amount of padding
         """
@@ -105,3 +105,15 @@ def North_Arrow(ax,fontsize=12,x=0.05,y=0.1):
     ax.text(x, y, "N", size=fontsize, va="center", ha="center", rotation=0,transform=ax.transAxes,
             bbox=dict(boxstyle="northarrow,pad=0.13", fc='white',ec='k',lw=1))
     del BoxStyle._style_list["northarrow"]  # Unregister it.
+
+
+class LegendTitle(object):
+    def __init__(self, text_props=None):
+        self.text_props = text_props or {}
+        super(LegendTitle, self).__init__()
+
+    def legend_artist(self, legend, orig_handle, fontsize, handlebox):
+        x0, y0 = handlebox.xdescent, handlebox.ydescent
+        title = mtext.Text(x0, y0, orig_handle,  **self.text_props)
+        handlebox.add_artist(title)
+        return title
