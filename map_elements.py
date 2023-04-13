@@ -108,6 +108,8 @@ def North_Arrow(ax,fontsize=12,x=0.05,y=0.1):
 
 
 class LegendTitle(object):
+    
+    import matplotlib.text as mtext
     def __init__(self, text_props=None):
         self.text_props = text_props or {}
         super(LegendTitle, self).__init__()
